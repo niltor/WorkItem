@@ -77,7 +77,7 @@
                     android:text="Microsoft"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/microsoft-signin"/>
+                    android:id="@+id/microsoft_signin" tools:ignore="HardcodedText"/>
 
         </LinearLayout>
     </ScrollView>
