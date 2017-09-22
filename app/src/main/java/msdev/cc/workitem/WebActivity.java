@@ -9,7 +9,6 @@ import android.webkit.WebViewClient;
 
 public class WebActivity extends AppCompatActivity {
 
-
     private WebView webView;
 
     @Override
@@ -24,7 +23,6 @@ public class WebActivity extends AppCompatActivity {
 
         webView.loadUrl("https://admin.msdev.cc/workitem");
         webView.setWebViewClient(new MyWebViewClicnt());
-
     }
 
     private class MyWebViewClicnt extends WebViewClient {
@@ -35,5 +33,4 @@ public class WebActivity extends AppCompatActivity {
             return true;
         }
     }
-
 }
