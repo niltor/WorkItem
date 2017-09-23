@@ -133,7 +133,7 @@ namespace WorkItemWeb.Controllers
         public string GenerateRequestPostData(string code)
         {
             return string.Format("client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion={0}&grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer&assertion={1}&redirect_uri={2}",
-                HttpUtility.UrlEncode(_configuration.GetSection("VSTS")["AppSecret"]),
+                HttpUtility.UrlEncode(_configuration.GetSection("VSTS")["ClientSecret"]),
                 HttpUtility.UrlEncode(code),
                 _configuration.GetSection("VSTS")["CallbackUrl"]
                 );
