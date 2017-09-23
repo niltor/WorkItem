@@ -101,7 +101,9 @@ namespace WorkItemWeb.Controllers
             }
             catch (WebException wex)
             {
-                error = "Request Issue: " + wex.Message;
+                error = "Request Issue: " + wex.Source+ wex.Message+wex.InnerException?.Message;
+
+
             }
             catch (Exception ex)
             {
