@@ -5897,7 +5897,7 @@
       ]
     },
     "Microsoft.Data.Edm/5.8.2": {
-      "sha512": "P/d8DxA6MFHroBEn/jW0LMQSIKnsRRibrZtRCLfov2boQfrQ1R1BVgkJ5oIhcQsOm0l4POv+I2ny6RBsclNbOw==",
+      "sha512": "QYeztsttwC94T8xl7PAPkCfRG2eUBfadcFy5/yGf3ogAZGqEjm14rl7cAyHQOU3sWAA8z++vaUP+6l2STEf5Yw==",
       "type": "package",
       "path": "microsoft.data.edm/5.8.2",
       "files": [
@@ -5961,7 +5961,7 @@
       ]
     },
     "Microsoft.Data.OData/5.8.2": {
-      "sha512": "oEIUtXcRiKogF0yZxA+QdgxoBJ34989qL/5xOSrTfxAhzNJV5Hw6DRdWgUCpeXFMoJUQx7ptbHCN+My/LCQfsg==",
+      "sha512": "80P8VanU3bO1qdqdOCxLD4iDQrlgsFODumvy/7sHyZBKE+s1nWqbxLWMx/njZ3JVcrixlYoTm7SxfuC06d8wdg==",
       "type": "package",
       "path": "microsoft.data.odata/5.8.2",
       "files": [
@@ -7521,7 +7521,7 @@
       ]
     },
     "Newtonsoft.Json/10.0.1": {
-      "sha512": "ebWzW9j2nwxQeBo59As2TYn7nYr9BHicqqCwHOD1Vdo+50HBtLPuqdiCYJcLdTRknpYis/DSEOQz5KmZxwrIAg==",
+      "sha512": "HQdIiQDgdveFuyVbjKsvOxOdBVIzLPKtVjkLgbkMatXL08Dxt/DSx+UKQTqav0niXiYyjNnh0MzKjYEemkdbeA==",
       "type": "package",
       "path": "newtonsoft.json/10.0.1",
       "files": [
@@ -7545,7 +7545,7 @@
       ]
     },
     "Newtonsoft.Json.Bson/1.0.1": {
-      "sha512": "5PYT/IqQ+UK31AmZiSS102R6EsTo+LGTSI8bp7WAUqDKaF4wHXD8U9u4WxTI1vc64tYi++8p3dk3WWNqPFgldw==",
+      "sha512": "CxZJm5XVCFYDE0iIkwV7ect7sBzquR5r9coFLv+NXBci/ozKfnnJdlbw0VCZmB+JzT655JjgKmoF5XR9cQjd4g==",
       "type": "package",
       "path": "newtonsoft.json.bson/1.0.1",
       "files": [
@@ -8758,7 +8758,7 @@
       ]
     },
     "System.Diagnostics.FileVersionInfo/4.3.0": {
-      "sha512": "omCF64wzQ3Q2CeIqkD6lmmxeMZtGHUmzgFMPjfVaOsyqpR66p/JaZzManMw1s33osoAb5gqpncsjie67+yUPHQ==",
+      "sha512": "3kxCAyihZhPD4ASvIJTZ0AeLmK6UUgHWpKaYFIV5b2wIrX8XQDJauSQ8+Lsv1A36r40847MXvEwlUXEtGqOLyQ==",
       "type": "package",
       "path": "system.diagnostics.fileversioninfo/4.3.0",
       "files": [
@@ -9204,7 +9204,7 @@
       ]
     },
     "System.Interactive.Async/3.1.1": {
-      "sha512": "hZccYiIE5RS1/J9Tb/BNtosAGVggdlsJm4Ojdu+gDV0p4AIi+LUfUogMKkRacljQEJd2AG6vYzvcjhQFkqoZmw==",
+      "sha512": "HpTE4nqJoD5fJiLEi2dQ7xiu7CunNmMlt81IVNsP54G9+jDn3jyFUxAw06yXByDqr10fq0k13GWh4okpqN1kUw==",
       "type": "package",
       "path": "system.interactive.async/3.1.1",
       "files": [
@@ -10889,7 +10889,7 @@
       ]
     },
     "System.Runtime.Serialization.Formatters/4.3.0": {
-      "sha512": "KT591AkTNFOTbhZlaeMVvfax3RqhH1EJlcwF50Wm7sfnBLuHiOeZRRKrr1ns3NESkM20KPZ5Ol/ueMq5vg4QoQ==",
+      "sha512": "DItfRPPkHv5aLk+fkl+P+yCvJJkKjJDTQqsORbC8fPOP1oDbHutCTgXNsGBUVmWBoPgK+xmCb7Bp1O0cwk+Wgw==",
       "type": "package",
       "path": "system.runtime.serialization.formatters/4.3.0",
       "files": [
@@ -11462,7 +11462,7 @@
       ]
     },
     "System.Spatial/5.8.2": {
-      "sha512": "0RfZZJ8RlrfjoBPAF6pczX4Nd2kyLM8EX1PCP5Rqs/jOhJBUPYhpXjIsVAYN7kocj9IJ9XoJWAxWgXIDtJY2Ag==",
+      "sha512": "mSGzZw/zUv1OZs0mka90WH6J0nO9LiwZu8Vx2YBs70sv3EKiM3ecbp3B0fxaOppEVWFm2tsUl32fT+ciR8f/6A==",
       "type": "package",
       "path": "system.spatial/5.8.2",
       "files": [
@@ -12430,7 +12430,7 @@
       ]
     },
     "System.Xml.XPath/4.3.0": {
-      "sha512": "v1JQ5SETnQusqmS3RwStF7vwQ3L02imIzl++sewmt23VGygix04pEH+FCj1yWb+z4GDzKiljr1W7Wfvrx0YwgA==",
+      "sha512": "3cmWCVkY7U3+oUj2FPFRG1t7UJgW+bU2amWbIgRHW5Bq0k/zXrcoMvM67qkZ07WGddbtbVmzmiC2XzcIk/Hd2Q==",
       "type": "package",
       "path": "system.xml.xpath/4.3.0",
       "files": [
@@ -12467,7 +12467,7 @@
       ]
     },
     "System.Xml.XPath.XDocument/4.3.0": {
-      "sha512": "jw9oHHEIVW53mHY9PgrQa98Xo2IZ0ZjrpdOTmtvk+Rvg4tq7dydmxdNqUvJ5YwjDqhn75mBXWttWjiKhWP53LQ==",
+      "sha512": "jeleE1ouWf1BVltoN+vTmpMU4byzt5THAOE4qwSFRI3YkIpIfUD402BwFe1NKxg0Yy4ZwGTtsCjppB12CGzZpw==",
       "type": "package",
       "path": "system.xml.xpath.xdocument/4.3.0",
       "files": [
@@ -12542,11 +12542,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "D:\\msdev\\WorkItem\\WorkItemWeb\\WorkItemWeb.csproj",
+      "projectUniqueName": "E:\\msdev.cc\\WorkItem\\WorkItemWeb\\WorkItemWeb.csproj",
       "projectName": "WorkItemWeb",
-      "projectPath": "D:\\msdev\\WorkItem\\WorkItemWeb\\WorkItemWeb.csproj",
+      "projectPath": "E:\\msdev.cc\\WorkItem\\WorkItemWeb\\WorkItemWeb.csproj",
       "packagesPath": "C:\\Users\\zpty\\.nuget\\packages\\",
-      "outputPath": "D:\\msdev\\WorkItem\\WorkItemWeb\\obj\\",
+      "outputPath": "E:\\msdev.cc\\WorkItem\\WorkItemWeb\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
