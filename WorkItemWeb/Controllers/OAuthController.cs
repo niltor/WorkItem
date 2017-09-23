@@ -102,7 +102,7 @@ namespace WorkItemWeb.Controllers
             catch (WebException wex)
             {
                 error = "Request Issue: " + wex.Source+ wex.Message+wex.InnerException?.Message;
-
+                Console.WriteLine($"postdata:{postData},length:{webRequest.ContentLength}");
 
             }
             catch (Exception ex)
