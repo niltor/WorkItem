@@ -24,6 +24,9 @@
         <activity
                 android:name="com.microsoft.identity.client.AuthenticationActivity"
                 tools:remove="android:configChanges"/>
+
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".LoginActivity"/>
         <activity
                 android:name=".WebActivity"
                 android:label="@string/title_activity_web"

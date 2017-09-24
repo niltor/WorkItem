@@ -1,5 +1,6 @@
 package msdev.cc.workitem;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,7 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements HomeFragment.OnFragmentInteractionListener{
+public class MainActivity extends AppCompatActivity implements HomeFragment.OnFragmentInteractionListener {
 
     private TextView mTextMessage;
     protected FragmentManager fragmentManager;
@@ -36,6 +37,14 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+
+        Intent intent = getIntent();
+        String token = intent.getStringExtra("token");
+        String expiration = intent.getStringExtra("expiration");
+
+        mTextMessage.setText(token);
+
     }
 
 

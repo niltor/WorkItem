@@ -66,12 +66,13 @@ namespace WorkItemWeb.Controllers
             return RedirectToAction(nameof(LoginResult), new
             {
                 token = token.AccessToken,
+                refresh_token = token.RefreshToken,
                 expiration = token.ExpiresIn
             });
         }
 
 
-        public IActionResult LoginResult(string token, string expiration)
+        public IActionResult LoginResult(string token, string refresh_token, string expiration)
         {
             return Content("");
         }
