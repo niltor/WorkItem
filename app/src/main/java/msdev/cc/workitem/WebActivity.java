@@ -21,7 +21,7 @@ public class WebActivity extends AppCompatActivity {
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
 
-        webView.loadUrl("https://admin.msdev.cc/workitem");
+        webView.loadUrl("https://workitem.msdev.cc/");
         webView.setWebViewClient(new MyWebViewClicnt());
     }
 

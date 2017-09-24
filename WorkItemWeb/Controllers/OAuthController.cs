@@ -62,10 +62,18 @@ namespace WorkItemWeb.Controllers
                     ViewBag.Token = token;
                 }
             }
-
             ViewBag.Error = error;
+            return RedirectToAction(nameof(LoginResult), new
+            {
+                token = token.AccessToken,
+                expiration = token.ExpiresIn
+            });
+        }
 
-            return View("TokenView");
+
+        public IActionResult LoginResult(string token, string expiration)
+        {
+            return Content("");
         }
 
         private String PerformTokenRequest(String postData, out TokenModel token)
