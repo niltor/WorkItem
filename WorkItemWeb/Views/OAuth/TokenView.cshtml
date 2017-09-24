@@ -47,10 +47,12 @@ else
     <form method="post" action="/oauth/refreshtoken">
 
         <p>Access token:</p>
-        <textarea rows="6" cols="80" onfocus="selectAll(this)" onclick="selectAll(this)" readonly="readonly">@ViewBag.Token.AccessToken</textarea>
+        <textarea rows="6" cols="80" class="form-control"
+                  onfocus="selectAll(this)" onclick="selectAll(this)" readonly="readonly">@ViewBag.Token.AccessToken</textarea>
 
         <p>Refresh token:</p>
-        <textarea rows="6" cols="80" name="refreshToken" onfocus="selectAll(this)" onclick="selectAll(this)" readonly="readonly">@ViewBag.Token.RefreshToken</textarea>
+        <textarea rows="6" cols="80" name="refreshToken" class="form-control"
+                  onfocus="selectAll(this)" onclick="selectAll(this)" readonly="readonly">@ViewBag.Token.RefreshToken</textarea>
 
         <p>Expiration (seconds):</p>
         <input type="text" id="expiration" value="@ViewBag.Token.ExpiresIn" readonly />

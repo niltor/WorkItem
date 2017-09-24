@@ -83,7 +83,6 @@ namespace WorkItemWeb.Controllers
             {
                 swRequestWriter.Write(postData);
             }
-
             try
             {
                 HttpWebResponse hwrWebResponse = (HttpWebResponse)webRequest.GetResponse();
@@ -101,7 +100,7 @@ namespace WorkItemWeb.Controllers
             }
             catch (WebException wex)
             {
-                error = "Request Issue: " + wex.Source+ wex.Message+wex.InnerException?.Message;
+                error = "Request Issue: " + wex.Source + wex.Message + wex.InnerException?.Message;
                 Console.WriteLine($"postdata:{postData},length:{webRequest.ContentLength}");
 
             }

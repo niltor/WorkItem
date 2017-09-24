@@ -18,3 +18,4 @@ E:\msdev.cc\WorkItem\WorkItemWeb\obj\Debug\netcoreapp2.0\WorkItemWeb.AssemblyInf
 E:\msdev.cc\WorkItem\WorkItemWeb\obj\Debug\netcoreapp2.0\WorkItemWeb.AssemblyInfo.cs
 E:\msdev.cc\WorkItem\WorkItemWeb\obj\Debug\netcoreapp2.0\WorkItemWeb.dll
 E:\msdev.cc\WorkItem\WorkItemWeb\obj\Debug\netcoreapp2.0\WorkItemWeb.pdb
+E:\msdev.cc\WorkItem\WorkItemWeb\obj\Debug\netcoreapp2.0\WorkItemWeb.csprojResolveAssemblyReference.cache
