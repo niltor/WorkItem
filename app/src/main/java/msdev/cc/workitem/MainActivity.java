@@ -1,6 +1,7 @@
 package msdev.cc.workitem;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -38,10 +39,8 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-
-        Intent intent = getIntent();
-        String token = intent.getStringExtra("token");
-        String expiration = intent.getStringExtra("expiration");
+        SharedPreferences config = getSharedPreferences("config", 0);
+        String token=config.getString("token",null);
 
         mTextMessage.setText(token);
 
