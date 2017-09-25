@@ -2,12 +2,12 @@ E:\msdev.cc\WorkItem\VSTS\bin\Debug\VSTS.dll
 E:\msdev.cc\WorkItem\VSTS\bin\Debug\VSTS.pdb
 E:\msdev.cc\WorkItem\VSTS\bin\Debug\VSTS.VSTS.apk
 E:\msdev.cc\WorkItem\VSTS\bin\Debug\VSTS.VSTS-Signed.apk
-E:\msdev.cc\WorkItem\VSTS\obj\Debug\VSTS.csprojResolveAssemblyReference.cache
 E:\msdev.cc\WorkItem\VSTS\obj\Debug\VSTS.csproj.CoreCompileInputs.cache
 E:\msdev.cc\WorkItem\VSTS\obj\Debug\VSTS.dll
 E:\msdev.cc\WorkItem\VSTS\obj\Debug\VSTS.pdb
 E:\msdev.cc\WorkItem\VSTS\obj\Debug\android\bin\VSTS.VSTS.apk
 E:\msdev.cc\WorkItem\VSTS\obj\Debug\res\layout\main.xml
+E:\msdev.cc\WorkItem\VSTS\obj\Debug\res\layout\login.xml
 E:\msdev.cc\WorkItem\VSTS\obj\Debug\res\values\strings.xml
 E:\msdev.cc\WorkItem\VSTS\obj\Debug\R.cs.flag
 E:\msdev.cc\WorkItem\VSTS\obj\Debug\uploadflags.txt

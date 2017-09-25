@@ -3,5 +3,7 @@
   <PropertyGroup>
     <SelectedDevice>ZUK Z2131</SelectedDevice>
     <DefaultDevice>Nexus_6P_API_23</DefaultDevice>
+    <AndroidDesignerPreferredDevice>Nexus 6P</AndroidDesignerPreferredDevice>
+    <AndroidDesignerPreferredTheme>Theme.DeviceDefault</AndroidDesignerPreferredTheme>
   </PropertyGroup>
 </Project>

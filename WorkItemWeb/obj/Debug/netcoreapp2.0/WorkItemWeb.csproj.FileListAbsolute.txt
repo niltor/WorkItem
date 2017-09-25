@@ -13,9 +13,9 @@ E:\msdev.cc\WorkItem\WorkItemWeb\bin\Debug\netcoreapp2.0\WorkItemWeb.runtimeconf
 E:\msdev.cc\WorkItem\WorkItemWeb\bin\Debug\netcoreapp2.0\WorkItemWeb.runtimeconfig.dev.json
 E:\msdev.cc\WorkItem\WorkItemWeb\bin\Debug\netcoreapp2.0\WorkItemWeb.dll
 E:\msdev.cc\WorkItem\WorkItemWeb\bin\Debug\netcoreapp2.0\WorkItemWeb.pdb
+E:\msdev.cc\WorkItem\WorkItemWeb\obj\Debug\netcoreapp2.0\WorkItemWeb.csprojResolveAssemblyReference.cache
 E:\msdev.cc\WorkItem\WorkItemWeb\obj\Debug\netcoreapp2.0\WorkItemWeb.csproj.CoreCompileInputs.cache
 E:\msdev.cc\WorkItem\WorkItemWeb\obj\Debug\netcoreapp2.0\WorkItemWeb.AssemblyInfoInputs.cache
 E:\msdev.cc\WorkItem\WorkItemWeb\obj\Debug\netcoreapp2.0\WorkItemWeb.AssemblyInfo.cs
 E:\msdev.cc\WorkItem\WorkItemWeb\obj\Debug\netcoreapp2.0\WorkItemWeb.dll
 E:\msdev.cc\WorkItem\WorkItemWeb\obj\Debug\netcoreapp2.0\WorkItemWeb.pdb
-E:\msdev.cc\WorkItem\WorkItemWeb\obj\Debug\netcoreapp2.0\WorkItemWeb.csprojResolveAssemblyReference.cache
