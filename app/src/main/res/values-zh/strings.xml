@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">WorkItem</string>
-    <string name="title_home">主页</string>
-    <string name="title_dashboard">面板</string>
-    <string name="title_notifications">消息</string>
-</resources>
