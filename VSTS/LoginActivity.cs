@@ -5,6 +5,8 @@ using Android.Graphics;
 using Android.Content;
 using Android.Net;
 using System.Net;
+using VSTS.Services;
+using System.Threading.Tasks;
 
 namespace VSTS
 {
@@ -15,7 +17,7 @@ namespace VSTS
         private static LogActivity activity;
 
         static ISharedPreferences sp;
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.Login);
@@ -23,18 +25,25 @@ namespace VSTS
             sp = GetSharedPreferences("config", FileCreationMode.Private);
             activity = this;
 
-
             //判断是否已经登录
-            var refreshToken = sp.GetString("refresh_token",string.Empty);
+            var refreshToken = sp.GetString("refresh_token", string.Empty);
             if (!string.IsNullOrEmpty(refreshToken))
             {
                 //获取新的token，存储并跳转
+                var service = new TokenService(this);
+                var re = await service.RefreshToken(refreshToken);
+                //service.TestAsync();
+
+                var intent = new Intent(this, typeof(MainActivity));
+                StartActivity(intent);
+                Finish();
 
             }
 
             webView = (WebView)FindViewById(Resource.Id.webView);
             webView.Settings.JavaScriptEnabled = true;
             webView.Settings.DefaultTextEncodingName = "utf-8";
+            webView.Settings.UseWideViewPort = true;
             webView.SetWebViewClient(new MyWebViewClient());
             webView.LoadUrl("https://workitem.msdev.cc/");
 
@@ -66,6 +75,7 @@ namespace VSTS
 
                     var intent = new Intent(activity, typeof(MainActivity));
                     activity.StartActivity(intent);
+                    activity.Finish();
                 }
             }
         }

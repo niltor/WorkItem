@@ -6,6 +6,8 @@ using System.IO;
 using Newtonsoft.Json;
 using VSTS.Models;
 using System.Text;
+using System.Threading.Tasks;
+using System.Net.Http;
 
 namespace VSTS.Services
 {
@@ -19,10 +21,9 @@ namespace VSTS.Services
         }
 
 
-        public void RefreshToken(string refreshToken)
+        public async Task<bool> RefreshToken(string refreshToken)
         {
             string url = "oauth2/token";
-
             var stream = _context.Assets.Open("config.prod.json");
             string configString = new StreamReader(stream).ReadToEnd();
             var config = JsonConvert.DeserializeObject<Config>(configString);
@@ -30,10 +31,10 @@ namespace VSTS.Services
             {
                 wc.BaseAddress = "https://app.vssps.visualstudio.com/";
                 var postData = GenerateRequestPostData(config.ClientSecret, refreshToken, config.CallbackUrl);
-                wc.Headers.Add(HttpRequestHeader.ContentType, "application/x-www-form-urlencoded");
-                wc.Headers.Add(HttpRequestHeader.ContentLength, Encoding.ASCII.GetByteCount(postData).ToString());
-                var result = wc.UploadString(url, postData);
-                var token = JsonConvert.DeserializeObject<Token>(result);
+                wc.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
+                //wc.Headers.Add("Content-Length", Encoding.ASCII.GetBytes(postData).Length.ToString());
+                var result = await wc.UploadDataTaskAsync(url, "POST", Encoding.UTF8.GetBytes(postData));
+                var token = JsonConvert.DeserializeObject<Token>(Encoding.UTF8.GetString(result));
 
                 //存储内容
                 var sp = _context.GetSharedPreferences("config", FileCreationMode.Private);
@@ -44,7 +45,7 @@ namespace VSTS.Services
                 editor.PutString("token_type", token.TokenType);
                 editor.Commit();
             }
-            return;
+            return true;
         }
 
         public string GenerateRequestPostData(string clientSecret, string authCode, string callbackUrl)
@@ -54,6 +55,27 @@ namespace VSTS.Services
                         URLEncoder.Encode(authCode, "utf-8"),
                         callbackUrl
                  );
+        }
+
+
+        public async Task TestAsync()
+        {
+            //var client = new HttpClient();
+            //var result = await client.GetAsync("https://msdev.cc");s            //if (result.IsSuccessStatusCode)
+            //{
+            //    var re= await result.Content.ReadAsStringAsync();
+
+            //}
+            //    Console.WriteLine(re);
+
+
+            using (var wc = new WebClient())
+            {
+                var re = await wc.DownloadStringTaskAsync(new Uri("https://baidu.com"));
+
+
+                Console.WriteLine(re);
+            }
         }
     }
 }

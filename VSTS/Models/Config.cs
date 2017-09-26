@@ -14,7 +14,6 @@ namespace VSTS.Models
 {
     public class Config
     {
-
         public string ClientSecret { get; set; }
 
         public string CallbackUrl { get; set; }
