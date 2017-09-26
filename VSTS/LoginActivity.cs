@@ -4,6 +4,7 @@ using Android.Webkit;
 using Android.Graphics;
 using Android.Content;
 using Android.Net;
+using System.Net;
 
 namespace VSTS
 {
@@ -22,10 +23,18 @@ namespace VSTS
             sp = GetSharedPreferences("config", FileCreationMode.Private);
             activity = this;
 
+
+            //判断是否已经登录
+            var refreshToken = sp.GetString("refresh_token",string.Empty);
+            if (!string.IsNullOrEmpty(refreshToken))
+            {
+                //获取新的token，存储并跳转
+
+            }
+
             webView = (WebView)FindViewById(Resource.Id.webView);
             webView.Settings.JavaScriptEnabled = true;
             webView.Settings.DefaultTextEncodingName = "utf-8";
-
             webView.SetWebViewClient(new MyWebViewClient());
             webView.LoadUrl("https://workitem.msdev.cc/");
 
