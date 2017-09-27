@@ -31,7 +31,7 @@ namespace VSTS
             {
                 //获取新的token，存储并跳转
                 var service = new TokenService(this);
-                var re = await service.RefreshToken(refreshToken);
+                await service.RefreshToken(refreshToken);
                 //service.TestAsync();
 
                 var intent = new Intent(this, typeof(MainActivity));
