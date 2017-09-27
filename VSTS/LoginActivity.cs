@@ -7,6 +7,7 @@ using Android.Net;
 using System.Net;
 using VSTS.Services;
 using System.Threading.Tasks;
+using Android.Util;
 
 namespace VSTS
 {
@@ -27,17 +28,16 @@ namespace VSTS
 
             //判断是否已经登录
             var refreshToken = sp.GetString("refresh_token", string.Empty);
+            Log.Debug("vsts", "当前的 refreshToken:{0}", refreshToken);
             if (!string.IsNullOrEmpty(refreshToken))
             {
+               
                 //获取新的token，存储并跳转
                 var service = new TokenService(this);
                 await service.RefreshToken(refreshToken);
-                //service.TestAsync();
-
                 var intent = new Intent(this, typeof(MainActivity));
                 StartActivity(intent);
                 Finish();
-
             }
 
             webView = (WebView)FindViewById(Resource.Id.webView);
@@ -56,7 +56,6 @@ namespace VSTS
                 view.LoadUrl(request.Url.ToString());
                 return true;
             }
-
 
             public override void OnPageStarted(WebView view, string url, Bitmap favicon)
             {

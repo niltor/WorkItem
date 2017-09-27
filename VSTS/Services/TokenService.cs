@@ -8,6 +8,7 @@ using VSTS.Models;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
+using Android.Util;
 
 namespace VSTS.Services
 {
@@ -20,9 +21,9 @@ namespace VSTS.Services
             _context = context;
         }
 
-        public string GenerateRequestPostData(string clientSecret, string authCode, string callbackUrl)
+        public string GenerateRefreshPostData(string clientSecret, string authCode, string callbackUrl)
         {
-            return String.Format("client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion={0}&grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer&assertion={1}&redirect_uri={2}",
+            return String.Format("client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion={0}&grant_type=refresh_token&assertion={1}&redirect_uri={2}",
                         URLEncoder.Encode(clientSecret, "utf-8"),
                         URLEncoder.Encode(authCode, "utf-8"),
                         callbackUrl
@@ -35,16 +36,16 @@ namespace VSTS.Services
             string url = "https://app.vssps.visualstudio.com/oauth2/token";
             var stream = _context.Assets.Open("config.prod.json");
             string configString = new StreamReader(stream).ReadToEnd();
-            var config = JsonConvert.DeserializeObject<Config>(configString);
+
+            var config = JsonConvert.DeserializeObject<Models.Config>(configString);
             using (var hc = new HttpClient())
             {
+                var postData = GenerateRefreshPostData(config.ClientSecret, refreshToken, config.CallbackUrl);
+                hc.DefaultRequestHeaders.TryAddWithoutValidation("Content-Length", postData.Length.ToString());
+                var response = await hc.PostAsync(url, new StringContent(postData, Encoding.UTF8, "application/x-www-form-urlencoded"));
+                var result = response.Content.ReadAsStringAsync().Result;
 
-                var postData = GenerateRequestPostData(config.ClientSecret, refreshToken, config.CallbackUrl);
-
-                hc.DefaultRequestHeaders.Add("Content-Type", "application/x-www-form-urlencoded");
-                hc.DefaultRequestHeaders.Add("Content-Length", Encoding.ASCII.GetBytes(postData).Length.ToString());
-
-                var response=await hc.PostAsync(url, new StringContent(postData));
+                Log.Debug("vsts", "请求返回内容:{0}", result);
                 var token = JsonConvert.DeserializeObject<Token>(response.Content.ReadAsStringAsync().Result);
 
                 //存储内容
