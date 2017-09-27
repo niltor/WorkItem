@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\config.prod.json" />
+    <AndroidAsset Include="Assets\temp.json" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

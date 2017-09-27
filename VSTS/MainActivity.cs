@@ -10,6 +10,9 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Util;
+using VSTS.Services;
+using System.IO;
+using Android.Content.Res;
 
 namespace VSTS
 {
@@ -34,6 +37,11 @@ namespace VSTS
 
             tokenTV.Text = token;
 
+            var service = new TokenService(this);
+            button.Click += async delegate
+             {
+                 await service.GetMyProjectAsync(token);
+             };
 
             // Create your application here
         }

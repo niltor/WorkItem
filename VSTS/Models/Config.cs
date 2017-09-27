@@ -19,3 +19,4 @@ namespace VSTS.Models
         public string CallbackUrl { get; set; }
     }
 }
+
