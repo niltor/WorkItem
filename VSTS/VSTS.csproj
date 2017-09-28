@@ -70,11 +70,13 @@
   <ItemGroup>
     <Compile Include="LoginActivity.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="Models\ProjectModels.cs" />
     <Compile Include="Models\Token.cs" />
     <Compile Include="Models\Config.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\TokenService.cs" />
+    <Compile Include="Services\VSTSService.cs" />
     <Compile Include="Tools\HttpTool.cs" />
   </ItemGroup>
   <ItemGroup>

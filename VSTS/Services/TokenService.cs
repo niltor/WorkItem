@@ -60,22 +60,5 @@ namespace VSTS.Services
             }
         }
 
-        /// <summary>
-        /// 获取我的项目列表
-        /// </summary>
-        public async Task GetMyProjectAsync(string token)
-        {
-            var url = "https://zpty.visualstudio.com/DefaultCollection/_apis/projects?api-version=3.0";
-            using (var hc = new HttpClient())
-            {
-
-                Console.WriteLine(token);
-                Log.Debug("vsts", "传递: {0}", token);
-
-                hc.DefaultRequestHeaders.TryAddWithoutValidation("Authorization", string.Format("Bearer {0}", token));
-                var result = await hc.GetStringAsync(url);
-                Log.Debug("vsts", "我的项目返回结果: {0}", result);
-            }
-        }
     }
 }
