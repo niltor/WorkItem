@@ -16,7 +16,6 @@
         app:menu="@menu/navigation_menu"
         app:elevation="16dp"
         android:background="@android:color/white"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="start" />
+        android:layout_alignParentBottom="true" />
 <!-- Note: background color is required to get elevation -->
 </RelativeLayout>
