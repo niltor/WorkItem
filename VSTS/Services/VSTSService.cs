@@ -12,6 +12,8 @@ using Android.Widget;
 using System.Threading.Tasks;
 using System.Net.Http;
 using Android.Util;
+using Newtonsoft.Json;
+using VSTS.Models;
 
 namespace VSTS.Services
 {
@@ -26,22 +28,32 @@ namespace VSTS.Services
 
 
         /// <summary>
-        /// è·å–æˆ‘çš„é¡¹ç›®åˆ—è¡¨
+        /// »ñÈ¡ÎÒµÄÏîÄ¿ÁĞ±í
         /// </summary>
-        public async Task GetMyProjectAsync(string token)
+        public async Task<Projects> GetMyProjectAsync()
         {
             var url = "/DefaultCollection/_apis/projects?api-version=3.0";
-            var result = GetAsync(url);
+            var result = await GetAsync(url);
+            return JsonConvert.DeserializeObject<Projects>(result);
+        }
 
-
+        /// <summary>
+        /// »ñÈ¡¹¤×÷ÌõÄ¿
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <param name="type"></param>
+        public async Task GetWorkItemsAsync(string projectId,string type)
+        {
+            var url = "/DefaultCollection/_apis/projects?api-version=3.0";
+            var result = await GetAsync(url);
         }
 
 
         /// <summary>
-        /// Getè¯·æ±‚æ•°æ®
+        /// GetÇëÇóÊı¾İ
         /// </summary>
-        /// <param name="url">è¯·æ±‚urlï¼Œä¸å«åŸŸå</param>
-        /// <returns>è¿”å›å­—ç¬¦ä¸²</returns>
+        /// <param name="url">ÇëÇóurl£¬²»º¬ÓòÃû</param>
+        /// <returns>·µ»Ø×Ö·û´®</returns>
         public async Task<string> GetAsync(string url)
         {
             using (var hc = new HttpClient())
@@ -55,7 +67,7 @@ namespace VSTS.Services
         }
 
         /// <summary>
-        /// Postè¯·æ±‚æ•°æ®
+        /// PostÇëÇóÊı¾İ
         /// </summary>
         /// <param name="url"></param>
         /// <param name="content"></param>

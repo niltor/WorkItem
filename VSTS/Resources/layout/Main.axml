@@ -13,9 +13,11 @@
         android:id="@+id/bottom_navigation"
         android:layout_height="56dp"
         android:layout_width="match_parent"
-        app:menu="@menu/navigation_menu"
         app:elevation="16dp"
-        android:background="@android:color/white"
-        android:layout_alignParentBottom="true" />
-<!-- Note: background color is required to get elevation -->
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/background_light"
+        app:itemBackground="@android:color/white"
+        app:itemTextColor="@android:color/black"
+        app:itemIconTint="@android:color/black"
+        app:menu="@menu/navigation_menu" />
 </RelativeLayout>

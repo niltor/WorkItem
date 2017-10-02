@@ -6,42 +6,17 @@
           android:showAsAction="ifRoom"
           android:enabled="true">
     </item>
-    <item android:title="Audio"
-          android:id="@+id/menu_audio"
+    <item android:title="WorkItem"
+          android:id="@+id/menu_workitem"
           android:icon="@*android:drawable/ic_menu_home"
           android:showAsAction="ifRoom"
           android:enabled="true">
     </item>
 
-    <item android:title="Video"
-          android:id="@+id/menu_video"
+    <item android:title="Build"
+          android:id="@+id/menu_build"
           android:icon="@*android:drawable/ic_menu_home"
           android:showAsAction="ifRoom"
           android:enabled="true">
     </item>
 </menu>
-
-<!-- Code to implement into Activity:
-
-public override bool OnCreateOptionsMenu(IMenu menu)
-{
-  //change main_compat_menu
-	MenuInflater.Inflate(Resource.Menu.navigation_menu, menu);
-	return base.OnCreateOptionsMenu(menu);
-}
-
-
-public override bool OnOptionsItemSelected(IMenuItem item)
-{
-	switch (item.ItemId) {
-	case Resource.Id.action_edit:
-		Toast.MakeText (this, "You pressed edit action!", ToastLength.Short).Show ();
-		break;
-	case Resource.Id.action_save:
-		Toast.MakeText (this, "You pressed save action!", ToastLength.Short).Show ();
-		break;
-	}
-	return base.OnOptionsItemSelected(item);
-}
-
--->
