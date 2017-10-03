@@ -1,50 +1,80 @@
-﻿using System.Linq;
-using Android.App;
-using Android.OS;
+﻿using Android.OS;
 using Android.Runtime;
-using Android.Util;
+using Android.Support.Design.Widget;
+using Android.Support.V4.App;
+using Android.Support.V4.View;
 using Android.Views;
-using Android.Widget;
-using VSTS.Services;
-using static Android.Widget.AdapterView;
+using Java.Lang;
 
 namespace VSTS.Fragments
 {
-
-    public class WorkItemFragment : ListFragment
+    public class WorkItemFragment : Fragment
     {
-        private static string[] data = new string[] { "first", "second", "third" };
 
-        public override async void OnCreate(Bundle savedInstanceState)
+        public static string _accessToken;
+        public static string[] titles = { "全部", "任务", "Bug" };
+
+        public override void OnActivityCreated(Bundle savedInstanceState)
+        {
+            base.OnActivityCreated(savedInstanceState);
+        }
+
+        public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            var token = Arguments.GetString("access_token");
-
-            Log.Debug("vsts", token);
-            var service = new VSTSService(token);
-            var projects = await service.GetMyProjectAsync();
-
-            var projectTitles = projects.Value.Select(s => s.Name).ToArray();
-
-            ListAdapter = new ArrayAdapter<string>(Activity, Resource.Layout.projetct_list_item, Resource.Id.project_content, projectTitles);
-
-            ListView.ItemClick += delegate (object sender, ItemClickEventArgs args)
-            {
-                Toast.MakeText(Activity, ((TextView)args.View).Text, ToastLength.Long).Show();
-            };
+            _accessToken = Arguments.GetString("access_token");
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            return inflater.Inflate(Resource.Layout.WorkItemFragment, null);
+            var rootView = inflater.Inflate(Resource.Layout.WorkItemFragment, container, false);
+            var tabLayout = rootView.FindViewById<TabLayout>(Resource.Id.workitem_tablayout);
+            var viewPager = rootView.FindViewById<ViewPager>(Resource.Id.workitem_viewpager);
+
+            viewPager.Adapter = new MyAdapter(FragmentManager);
+            tabLayout.SetupWithViewPager(viewPager);
+            tabLayout.TabSelected += TabLayout_TabSelected;
+            return rootView;
 
         }
+
+        private void TabLayout_TabSelected(object sender, TabLayout.TabSelectedEventArgs e)
+        {
+            
+        }
+
+        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
+        {
+            inflater.Inflate(Resource.Menu.workitem_menu, menu);
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            return base.OnOptionsItemSelected(item);
+        }
+
         internal static WorkItemFragment NewInstance()
         {
             return new WorkItemFragment
             {
                 Arguments = new Bundle()
             };
+        }
+        class MyAdapter : FragmentPagerAdapter
+        {
+            public MyAdapter(FragmentManager fm) : base(fm)
+            {
+            }
+            public override int Count => 3;
+
+            public override ICharSequence GetPageTitleFormatted(int position)
+            {
+                return CharSequence.ArrayFromStringArray(titles)[position];
+            }
+            public override Fragment GetItem(int position)
+            {
+                return AllWorkItemFragment.NewInstance(_accessToken);
+            }
         }
     }
 }

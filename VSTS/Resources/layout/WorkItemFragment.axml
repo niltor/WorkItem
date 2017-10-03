@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
-    <ListView
-        android:id="@android:id/list"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/workitem_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.v4.view.ViewPager
+        android:id="@+id/workitem_viewpager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:drawSelectorOnTop="false" />
-
-    <TextView android:id="@id/android:empty"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="#FF0000"
-              android:text="No data"/>
+        android:layout_height="match_parent">
+    <android.support.design.widget.TabLayout
+        android:id="@+id/workitem_tablayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top" />
+    </android.support.v4.view.ViewPager>
 </LinearLayout>

@@ -5,12 +5,12 @@ using VSTS.Services;
 using Android.Support.V7.App;
 using Android.Support.Design.Widget;
 using VSTS.Fragments;
-using Android.App;
 using Android.Util;
+using Android.Support.V4.App;
 
 namespace VSTS
 {
-    [Activity(Label = "MainActivity")]
+    [Android.App.Activity(Label = "MainActivity")]
     public class MainActivity : AppCompatActivity
     {
         private Fragment fragment;
@@ -28,7 +28,6 @@ namespace VSTS
             var sp = GetSharedPreferences("config", FileCreationMode.Private);
             accessToken = sp.GetString("token", string.Empty);
             var service = new TokenService(this);
-
         }
 
         private void BottomNavigation_NavigationItemSelected(object sender, BottomNavigationView.NavigationItemSelectedEventArgs e)
@@ -51,10 +50,9 @@ namespace VSTS
 
             if (fragment == null)
                 return;
-
             Log.Debug("vsts", fragment.ToString());
 
-            FragmentManager.BeginTransaction()
+            SupportFragmentManager.BeginTransaction()
                 .Replace(Resource.Id.content_frame, fragment)
                 .Commit();
         }

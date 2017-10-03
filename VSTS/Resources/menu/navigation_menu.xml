@@ -2,20 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:title="Home"
           android:id="@+id/menu_home"
-          android:icon="@*android:drawable/ic_menu_home"
+          android:icon="@drawable/home"
           android:showAsAction="ifRoom"
           android:enabled="true">
     </item>
     <item android:title="WorkItem"
           android:id="@+id/menu_workitem"
-          android:icon="@*android:drawable/ic_menu_home"
+          android:icon="@drawable/work"
           android:showAsAction="ifRoom"
           android:enabled="true">
     </item>
 
     <item android:title="Build"
           android:id="@+id/menu_build"
-          android:icon="@*android:drawable/ic_menu_home"
+          android:icon="@drawable/build"
           android:showAsAction="ifRoom"
           android:enabled="true">
     </item>

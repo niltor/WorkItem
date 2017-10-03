@@ -1,19 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using System.Threading.Tasks;
 using System.Net.Http;
 using Android.Util;
 using Newtonsoft.Json;
 using VSTS.Models;
+using System.Text;
+using System.Linq;
+using VSTS.Models.WorkItemIdResult;
+using VSTS.Models.WorkItemResult;
 
 namespace VSTS.Services
 {
@@ -25,7 +18,6 @@ namespace VSTS.Services
         {
             _accessToken = accessToken;
         }
-
 
         /// <summary>
         /// 获取我的项目列表
@@ -40,12 +32,41 @@ namespace VSTS.Services
         /// <summary>
         /// 获取工作条目
         /// </summary>
-        /// <param name="projectId"></param>
+        /// <param name="projectName"></param>
         /// <param name="type"></param>
-        public async Task GetWorkItemsAsync(string projectId,string type)
+        public async Task<WorkItemResult> GetWorkItemsAsync(string projectName, string type)
         {
+
+            string queryString = "SELECT [System.TeamProject] FROM WorkItems WHERE [System.TeamProject] = @project";
+            var queryModel = new WIQLQuery()
+            {
+                Query = queryString
+            };
+            var query = JsonConvert.SerializeObject(queryModel); //request body  json string
+
+            Log.Debug("vsts", "query:" + query);
+
             var url = "/DefaultCollection/_apis/projects?api-version=3.0";
-            var result = await GetAsync(url);
+
+            if (!string.IsNullOrEmpty(projectName))
+            {
+                url = $"/DefaultCollection/{projectName}/_apis/wit/wiql?api-version=3.0";
+            }
+            if (!string.IsNullOrEmpty(type))
+            {
+                queryString += $" AND  [System.WorkItemType] = '{type}' ";
+            }
+            //请求 获取workitem ids
+            var responseString = await PostAsync(url, new StringContent(query, Encoding.UTF8, "application/json"));
+            var workItemIdResult = JsonConvert.DeserializeObject<WorkiItemIdResult>(responseString);
+
+            var ids = workItemIdResult?.WorkItems.Select(s => s.Id).ToArray();
+
+            var idsQuery = string.Join(",", ids);
+            //获取workitem
+            var requestUrl = $"DefaultCollection/_apis/wit/workitems?ids={idsQuery}&api-version=1.0";
+            var result = await GetAsync(requestUrl);
+            return JsonConvert.DeserializeObject<WorkItemResult>(result);
         }
 
 
@@ -81,7 +102,7 @@ namespace VSTS.Services
                 var response = await hc.PostAsync(Daemon + url, content);
                 var result = await response.Content.ReadAsStringAsync();
 
-                Log.Debug("vsts", "result: {0}", result);
+                Log.Debug("vsts", "{1} ：result: {0}", result, Daemon + url);
                 return result;
             }
         }
