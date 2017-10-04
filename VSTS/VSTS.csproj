@@ -133,12 +133,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Fragments\AllWorkItemFragment.cs" />
+    <Compile Include="Fragments\WorkItemListFragment.cs" />
     <Compile Include="Fragments\HomeFragment.cs" />
     <Compile Include="Fragments\WorkItemFragment.cs" />
     <Compile Include="LoginActivity.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Models\ProjectModels.cs" />
+    <Compile Include="Models\ViewModels\WorkitemList.cs" />
     <Compile Include="Models\WIQLQuery.cs" />
     <Compile Include="Models\WorkItemIdResult.cs" />
     <Compile Include="Models\Token.cs" />
@@ -167,13 +168,13 @@
     <AndroidResource Include="Resources\layout\HomeFragment.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\projetct_list_item.xml">
+    <AndroidResource Include="Resources\layout\workitem_list_item.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\WorkItemFragment.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\AllWorkItemFragment.axml">
+    <AndroidResource Include="Resources\layout\WorkItemListFragment.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -197,9 +198,6 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Resources\drawable\book.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\home.png" />
   </ItemGroup>
   <ItemGroup>
@@ -219,6 +217,21 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\menu\workitem_menu.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\task.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\bug.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\feature.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\issue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\book.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\NETStandard.Library.2.0.0\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\packages\NETStandard.Library.2.0.0\build\netstandard2.0\NETStandard.Library.targets')" />

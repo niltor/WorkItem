@@ -3,11 +3,13 @@ using Android.Runtime;
 using Android.Support.Design.Widget;
 using Android.Support.V4.App;
 using Android.Support.V4.View;
+using Android.Util;
 using Android.Views;
 using Java.Lang;
 
 namespace VSTS.Fragments
 {
+    [Android.App.Activity(Label = "VSTS-WorkItems")]
     public class WorkItemFragment : Fragment
     {
 
@@ -16,32 +18,34 @@ namespace VSTS.Fragments
 
         public override void OnActivityCreated(Bundle savedInstanceState)
         {
+            Log.Debug("vsts", "WorkItemFragment OnActivityCreated");
             base.OnActivityCreated(savedInstanceState);
         }
 
         public override void OnCreate(Bundle savedInstanceState)
         {
+            Log.Debug("vsts", "WorkItemFragment OnCreate");
+
             base.OnCreate(savedInstanceState);
             _accessToken = Arguments.GetString("access_token");
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
+            Log.Debug("vsts", "WorkItemFragment OnCreatedView");
+
             var rootView = inflater.Inflate(Resource.Layout.WorkItemFragment, container, false);
             var tabLayout = rootView.FindViewById<TabLayout>(Resource.Id.workitem_tablayout);
             var viewPager = rootView.FindViewById<ViewPager>(Resource.Id.workitem_viewpager);
 
-            viewPager.Adapter = new MyAdapter(FragmentManager);
+            viewPager.Adapter = new MyAdapter(ChildFragmentManager);
+            viewPager.OffscreenPageLimit = 3;
             tabLayout.SetupWithViewPager(viewPager);
-            tabLayout.TabSelected += TabLayout_TabSelected;
+
             return rootView;
-
         }
 
-        private void TabLayout_TabSelected(object sender, TabLayout.TabSelectedEventArgs e)
-        {
-            
-        }
+
 
         public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
         {
@@ -73,7 +77,8 @@ namespace VSTS.Fragments
             }
             public override Fragment GetItem(int position)
             {
-                return AllWorkItemFragment.NewInstance(_accessToken);
+                Log.Debug("vsts", "当前标签:" + titles[position]);
+                return WorkItemListFragment.NewInstance(_accessToken, titles[position]);
             }
         }
     }

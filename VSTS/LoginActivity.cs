@@ -11,7 +11,7 @@ using Android.Util;
 
 namespace VSTS
 {
-    [Activity(Label = "VSTS", MainLauncher = true)]
+    [Activity(Label = "VSTS登录", MainLauncher = true)]
     public class LogActivity : Activity
     {
         private WebView webView;

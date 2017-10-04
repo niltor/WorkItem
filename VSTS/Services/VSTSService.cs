@@ -34,28 +34,27 @@ namespace VSTS.Services
         /// </summary>
         /// <param name="projectName"></param>
         /// <param name="type"></param>
-        public async Task<WorkItemResult> GetWorkItemsAsync(string projectName, string type)
+        public async Task<WorkItemResult> GetWorkItemsAsync(string projectName = null, string type = null)
         {
-
+            //TODO:根据人筛选
             string queryString = "SELECT [System.TeamProject] FROM WorkItems WHERE [System.TeamProject] = @project";
-            var queryModel = new WIQLQuery()
-            {
-                Query = queryString
-            };
-            var query = JsonConvert.SerializeObject(queryModel); //request body  json string
-
-            Log.Debug("vsts", "query:" + query);
-
             var url = "/DefaultCollection/_apis/projects?api-version=3.0";
-
+            //按项目筛选
             if (!string.IsNullOrEmpty(projectName))
             {
                 url = $"/DefaultCollection/{projectName}/_apis/wit/wiql?api-version=3.0";
             }
+            //按类型筛选
             if (!string.IsNullOrEmpty(type))
             {
                 queryString += $" AND  [System.WorkItemType] = '{type}' ";
             }
+            var queryModel = new WIQLQuery()
+            {
+                Query = queryString
+            };
+            var query = JsonConvert.SerializeObject(queryModel);
+            Log.Debug("vsts", "query:" + query);
             //请求 获取workitem ids
             var responseString = await PostAsync(url, new StringContent(query, Encoding.UTF8, "application/json"));
             var workItemIdResult = JsonConvert.DeserializeObject<WorkiItemIdResult>(responseString);
@@ -69,7 +68,6 @@ namespace VSTS.Services
             return JsonConvert.DeserializeObject<WorkItemResult>(result);
         }
 
-
         /// <summary>
         /// Get请求数据
         /// </summary>
@@ -82,7 +80,7 @@ namespace VSTS.Services
                 if (!url.StartsWith("/")) url = "/" + url;
                 hc.DefaultRequestHeaders.TryAddWithoutValidation("Authorization", string.Format("Bearer {0}", _accessToken));
                 var result = await hc.GetStringAsync(Daemon + url);
-                Log.Debug("vsts", "result: {0}", result);
+                //Log.Debug("vsts", "result: {0}", result);
                 return result;
             }
         }
@@ -102,7 +100,7 @@ namespace VSTS.Services
                 var response = await hc.PostAsync(Daemon + url, content);
                 var result = await response.Content.ReadAsStringAsync();
 
-                Log.Debug("vsts", "{1} ：result: {0}", result, Daemon + url);
+                //Log.Debug("vsts", "{1} ：result: {0}", result, Daemon + url);
                 return result;
             }
         }

@@ -10,7 +10,7 @@ using Android.Support.V4.App;
 
 namespace VSTS
 {
-    [Android.App.Activity(Label = "MainActivity")]
+    [Android.App.Activity(Label = "VSTS")]
     public class MainActivity : AppCompatActivity
     {
         private Fragment fragment;
