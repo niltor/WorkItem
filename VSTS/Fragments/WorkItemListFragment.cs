@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Android.Content;
@@ -10,6 +10,7 @@ using Android.Views;
 using Android.Widget;
 using Newtonsoft.Json;
 using VSTS.Models.ViewModels;
+using VSTS.Models.WorkItemResult;
 using VSTS.Services;
 using static Android.Widget.AdapterView;
 
@@ -34,21 +35,20 @@ namespace VSTS.Fragments
             return inflater.Inflate(Resource.Layout.WorkItemListFragment, null);
         }
 
-        public override async void OnViewCreated(View view, Bundle savedInstanceState)
+        public override void OnViewCreated(View view, Bundle savedInstanceState)
         {
 
             base.OnViewCreated(view, savedInstanceState);
             var sp = Activity.GetSharedPreferences("data", FileCreationMode.Private);
             var workItemsListData = new List<WorkitemList>();//要显示的数据列表
-            //判断type，如果是全部则请求数据，否则从本地取数据
-            if (type.Equals("全部"))
+            //从本地取出数据 ，不再进行网络请求
+            var workitemsData = sp.GetString("workitems", null);
+            if (!string.IsNullOrEmpty(workitemsData))
             {
-                var service = new VSTSService(token);
-                var projects = await service.GetMyProjectAsync();
-                var workItems = await service.GetWorkItemsAsync("MSDeveloper");
+                var workItems = JsonConvert.DeserializeObject<WorkItemResult>(workitemsData);
                 workItemsListData = workItems.Value
                     .Where(v => !v.Fields.SystemState.Equals("Closed"))
-                    .OrderBy(v=>v.Fields.SystemState)
+                    .OrderBy(v => v.Fields.SystemState)
                     .Select(v =>
                 new WorkitemList
                 {
@@ -59,32 +59,31 @@ namespace VSTS.Fragments
                     Url = v.Url,
                     AssignedTo = v.Fields.SystemAssignedTo
                 }).ToList();
-
-                //存储当前的内容
-                var editor = sp.Edit();
-                editor.PutString("allWorkitems", JsonConvert.SerializeObject(workItemsListData));
-                editor.Commit();
-            }
-            else
-            {
-                //从本地取出数据 ，不再进行网络请求
-                var workitemsData = sp.GetString("allWorkitems", null);
-
-                Log.Debug("vsts", "本地数据:" + workitemsData);
-                if (!string.IsNullOrEmpty(workitemsData))
+                //过滤数据，只取当前分类
+                switch (type)
                 {
-                    workItemsListData = JsonConvert.DeserializeObject<List<WorkitemList>>(workitemsData);
-                    //过滤数据，只取当前分类
-                    var workitemType = type.Equals("任务") ? "Task" : "Bug";
-                    workItemsListData = workItemsListData.Where(item => item.Type.Equals(workitemType)).ToList();
+                    case "全部":
+                        break;
+                    case "任务":
+                        workItemsListData = workItemsListData
+                            .Where(item => item.Type.Equals("Task"))
+                            .ToList();
+                        break;
+                    case "Bug":
+                        workItemsListData = workItemsListData
+                            .Where(item => item.Type.Equals("Bug"))
+                            .ToList();
+                        break;
+                    default:
+                        break;
                 }
-
             }
 
             ListAdapter = new MyWorkitemAdapter(Activity, workItemsListData);
             ListView.ItemClick += delegate (object sender, ItemClickEventArgs args)
             {
-                Toast.MakeText(Activity, ((TextView)args.View).Text, ToastLength.Long).Show();
+                var intent = new Intent(Activity,typeof(WorkitemDeatilActivity));
+                Activity.StartActivity(intent);
             };
 
         }

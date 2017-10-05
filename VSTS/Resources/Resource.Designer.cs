@@ -3682,10 +3682,13 @@ namespace VSTS
 			public const int workitem_list_item = 2130903109;
 			
 			// aapt resource value: 0x7f030046
-			public const int WorkItemFragment = 2130903110;
+			public const int WorkitemDetail = 2130903110;
 			
 			// aapt resource value: 0x7f030047
-			public const int WorkItemListFragment = 2130903111;
+			public const int WorkItemFragment = 2130903111;
+			
+			// aapt resource value: 0x7f030048
+			public const int WorkItemListFragment = 2130903112;
 			
 			static Layout()
 			{

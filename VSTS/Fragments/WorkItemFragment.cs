@@ -1,4 +1,4 @@
-﻿using Android.OS;
+using Android.OS;
 using Android.Runtime;
 using Android.Support.Design.Widget;
 using Android.Support.V4.App;
@@ -18,13 +18,11 @@ namespace VSTS.Fragments
 
         public override void OnActivityCreated(Bundle savedInstanceState)
         {
-            Log.Debug("vsts", "WorkItemFragment OnActivityCreated");
             base.OnActivityCreated(savedInstanceState);
         }
 
         public override void OnCreate(Bundle savedInstanceState)
         {
-            Log.Debug("vsts", "WorkItemFragment OnCreate");
 
             base.OnCreate(savedInstanceState);
             _accessToken = Arguments.GetString("access_token");
@@ -32,7 +30,6 @@ namespace VSTS.Fragments
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            Log.Debug("vsts", "WorkItemFragment OnCreatedView");
 
             var rootView = inflater.Inflate(Resource.Layout.WorkItemFragment, container, false);
             var tabLayout = rootView.FindViewById<TabLayout>(Resource.Id.workitem_tablayout);
@@ -77,7 +74,6 @@ namespace VSTS.Fragments
             }
             public override Fragment GetItem(int position)
             {
-                Log.Debug("vsts", "当前标签:" + titles[position]);
                 return WorkItemListFragment.NewInstance(_accessToken, titles[position]);
             }
         }

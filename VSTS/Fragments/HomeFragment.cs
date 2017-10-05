@@ -22,10 +22,8 @@ namespace VSTS.Fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             Log.Debug("vsts", "home oncreate view");
-
             // Use this to return your custom view for this Fragment
             return inflater.Inflate(Resource.Layout.HomeFragment, null);
-
         }
 
         internal static HomeFragment NewInstance()

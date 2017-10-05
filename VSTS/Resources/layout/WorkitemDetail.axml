@@ -6,7 +6,7 @@
     android:minWidth="25px"
     android:minHeight="25px">
     <TextView
-        android:text="功能开发中..."
+        android:text="任务详情页"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView1" />

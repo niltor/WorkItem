@@ -32,7 +32,7 @@ namespace VSTS.Services
                  );
         }
 
-        public async Task RefreshToken(string refreshToken)
+        public async Task<string> RefreshToken(string refreshToken)
         {
             string url = "https://app.vssps.visualstudio.com/oauth2/token";
             var stream = _context.Assets.Open("config.prod.json");
@@ -46,9 +46,7 @@ namespace VSTS.Services
                 var response = await hc.PostAsync(url, new StringContent(postData, Encoding.UTF8, "application/x-www-form-urlencoded"));
                 var result = response.Content.ReadAsStringAsync().Result;
 
-                Log.Debug("vsts", "请求返回内容:{0}", result);
                 var token = JsonConvert.DeserializeObject<Token>(response.Content.ReadAsStringAsync().Result);
-
                 //存储内容
                 var sp = _context.GetSharedPreferences("config", FileCreationMode.Private);
                 var editor = sp.Edit();
@@ -57,6 +55,8 @@ namespace VSTS.Services
                 editor.PutString("expiration", token.ExpiresIn);
                 editor.PutString("token_type", token.TokenType);
                 editor.Commit();
+
+                return token.AccessToken;
             }
         }
 

@@ -20,7 +20,7 @@ namespace VSTS.Services
         }
 
         /// <summary>
-        /// »ñÈ¡ÎÒµÄÏîÄ¿ÁĞ±í
+        /// è·å–æˆ‘çš„é¡¹ç›®åˆ—è¡¨
         /// </summary>
         public async Task<Projects> GetMyProjectAsync()
         {
@@ -30,21 +30,22 @@ namespace VSTS.Services
         }
 
         /// <summary>
-        /// »ñÈ¡¹¤×÷ÌõÄ¿
+        /// è·å–å·¥ä½œæ¡ç›®
         /// </summary>
         /// <param name="projectName"></param>
         /// <param name="type"></param>
         public async Task<WorkItemResult> GetWorkItemsAsync(string projectName = null, string type = null)
         {
-            //TODO:¸ù¾İÈËÉ¸Ñ¡
-            string queryString = "SELECT [System.TeamProject] FROM WorkItems WHERE [System.TeamProject] = @project";
-            var url = "/DefaultCollection/_apis/projects?api-version=3.0";
-            //°´ÏîÄ¿É¸Ñ¡
+            //TODO:æ ¹æ®äººç­›é€‰
+            string queryString = "SELECT [System.TeamProject] FROM WorkItems ";
+            var url = "/DefaultCollection/_apis/wit/wiql?api-version=3.0";
+            //æŒ‰é¡¹ç›®ç­›é€‰
             if (!string.IsNullOrEmpty(projectName))
             {
                 url = $"/DefaultCollection/{projectName}/_apis/wit/wiql?api-version=3.0";
+                queryString += " WHERE [System.TeamProject] = @project";
             }
-            //°´ÀàĞÍÉ¸Ñ¡
+            //æŒ‰ç±»å‹ç­›é€‰
             if (!string.IsNullOrEmpty(type))
             {
                 queryString += $" AND  [System.WorkItemType] = '{type}' ";
@@ -55,24 +56,22 @@ namespace VSTS.Services
             };
             var query = JsonConvert.SerializeObject(queryModel);
             Log.Debug("vsts", "query:" + query);
-            //ÇëÇó »ñÈ¡workitem ids
+            //è¯·æ±‚ è·å–workitem ids
             var responseString = await PostAsync(url, new StringContent(query, Encoding.UTF8, "application/json"));
             var workItemIdResult = JsonConvert.DeserializeObject<WorkiItemIdResult>(responseString);
-
             var ids = workItemIdResult?.WorkItems.Select(s => s.Id).ToArray();
-
             var idsQuery = string.Join(",", ids);
-            //»ñÈ¡workitem
+            //è·å–workitem
             var requestUrl = $"DefaultCollection/_apis/wit/workitems?ids={idsQuery}&api-version=1.0";
             var result = await GetAsync(requestUrl);
             return JsonConvert.DeserializeObject<WorkItemResult>(result);
         }
 
         /// <summary>
-        /// GetÇëÇóÊı¾İ
+        /// Getè¯·æ±‚æ•°æ®
         /// </summary>
-        /// <param name="url">ÇëÇóurl£¬²»º¬ÓòÃû</param>
-        /// <returns>·µ»Ø×Ö·û´®</returns>
+        /// <param name="url">è¯·æ±‚urlï¼Œä¸å«åŸŸå</param>
+        /// <returns>è¿”å›å­—ç¬¦ä¸²</returns>
         public async Task<string> GetAsync(string url)
         {
             using (var hc = new HttpClient())
@@ -80,13 +79,13 @@ namespace VSTS.Services
                 if (!url.StartsWith("/")) url = "/" + url;
                 hc.DefaultRequestHeaders.TryAddWithoutValidation("Authorization", string.Format("Bearer {0}", _accessToken));
                 var result = await hc.GetStringAsync(Daemon + url);
-                //Log.Debug("vsts", "result: {0}", result);
+                Log.Debug("vsts", "result: {0}", result);
                 return result;
             }
         }
 
         /// <summary>
-        /// PostÇëÇóÊı¾İ
+        /// Postè¯·æ±‚æ•°æ®
         /// </summary>
         /// <param name="url"></param>
         /// <param name="content"></param>
@@ -100,7 +99,7 @@ namespace VSTS.Services
                 var response = await hc.PostAsync(Daemon + url, content);
                 var result = await response.Content.ReadAsStringAsync();
 
-                //Log.Debug("vsts", "{1} £ºresult: {0}", result, Daemon + url);
+                Log.Debug("vsts", "{1} ï¼šresult: {0}", result, Daemon + url);
                 return result;
             }
         }
