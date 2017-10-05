@@ -11,7 +11,7 @@ using Android.Util;
 
 namespace VSTS
 {
-    [Activity(Label = "VSTS登录", MainLauncher = true)]
+    [Activity(Label = "VSTS", MainLauncher = true)]
     public class LogActivity : Activity
     {
         private WebView webView;
@@ -28,7 +28,6 @@ namespace VSTS
 
             //判断是否已经登录
             var refreshToken = sp.GetString("refresh_token", string.Empty);
-            Log.Debug("vsts", "当前的 refreshToken:{0}", refreshToken);
             if (!string.IsNullOrEmpty(refreshToken))
             {
                

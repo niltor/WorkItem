@@ -3,8 +3,9 @@ body {
 }
 
 .title {
-    height: 3rem;
-    line-height:3rem;
+    font-size:2rem;
+    height: 4rem;
+    line-height:4rem;
     width: 100%;
     background-color: dodgerblue;
     color: white;

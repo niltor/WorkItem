@@ -1,21 +1,29 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-
 <div class="row">
     <div class="title text-center">
         登录
     </div>
 </div>
 
-
 <div class="row">
 
-
-    <form action="OAuth/RequestToken" method="get" style="margin-top:50px;">
-        <button type="submit" class="btn btn-primary form-control">
-            登录我的Microsoft账号
-        </button>
-    </form>
-
+    <div class="col-md-12">
+        <div class="text-center">
+            <h3>
+                欢迎使用VSTS for Android！
+            </h3>
+        </div>
+        <div>
+            <p>
+                本软件可以让你在手机上管理你的项目及Workitem，更好的完成工作！
+            </p>
+        </div>
+        <form action="OAuth/RequestToken" method="get" style="margin-top:50px;">
+            <button type="submit" class="btn btn-lg btn-primary form-control input-lg">
+                使用Microsoft授权登录
+            </button>
+        </form>
+    </div>
 </div>
