@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/workitem_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -8,10 +8,21 @@
         android:id="@+id/workitem_viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <android.support.design.widget.TabLayout
-        android:id="@+id/workitem_tablayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top" />
+        <android.support.design.widget.TabLayout
+            android:id="@+id/workitem_tablayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top" />
     </android.support.v4.view.ViewPager>
-</LinearLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/workitem_float_action_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="15dp"
+        android:background="#00ffffff"
+        android:src="@drawable/add"
+        android:focusable="true"
+        android:clickable="true"
+        app:fabSize="mini" />
+</android.support.design.widget.CoordinatorLayout>
